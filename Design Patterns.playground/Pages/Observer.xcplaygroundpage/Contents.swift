@@ -15,10 +15,10 @@
  */
 import Combine
 
-public class User {
+class User {
     @Published var name: String
     
-    public init(name: String) {
+    init(name: String) {
         self.name = name
     }
 }

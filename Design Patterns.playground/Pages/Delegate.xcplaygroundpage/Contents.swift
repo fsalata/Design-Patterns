@@ -11,14 +11,14 @@
  */
 import UIKit
 
-public protocol MenuViewControllerDelegate: class {
+protocol MenuViewControllerDelegate: class {
     func menuViewController(_ menuViewController: MenuViewController, didSelectItemAtIndex index: Int)
 }
 
-public class MenuViewController: UIViewController {
-    public weak var delegate: MenuViewControllerDelegate?
+class MenuViewController: UIViewController {
+    weak var delegate: MenuViewControllerDelegate?
     
-    @IBOutlet public var tableView: UITableView! {
+    @IBOutlet  var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
             tableView.delegate = self
@@ -30,20 +30,20 @@ public class MenuViewController: UIViewController {
 
 // MARK: - UITableViewDataSource
 extension MenuViewController: UITableViewDataSource {
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = items[indexPath.row]
         return cell
     }
     
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
 }
 
 // MARK: - UITableViewDelegate
 extension MenuViewController: UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.menuViewController(self, didSelectItemAtIndex: indexPath.row)
     }
 }

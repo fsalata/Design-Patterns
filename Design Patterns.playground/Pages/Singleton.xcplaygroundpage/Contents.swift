@@ -14,7 +14,7 @@ import UIKit
 // MARK: - Singleton
 let app = UIApplication.shared
 
-public class MySingleton {
+class MySingleton {
     static let shared = MySingleton()
     
     private init() { }
@@ -26,10 +26,10 @@ let mySingleton = MySingleton.shared
 let defaultFileManager = FileManager.default
 let customFileManager = FileManager()
 
-public class MySingletonPlus {
+class MySingletonPlus {
     static let shared = MySingletonPlus()
     
-    public init() { }
+    init() { }
 }
 
 let singletonPlus = MySingletonPlus.shared

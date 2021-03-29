@@ -11,16 +11,16 @@
  */
 import UIKit
 
-public protocol MovieRatingStrategy {
+protocol MovieRatingStrategy {
     var ratingServiceName: String { get }
     
     func fetchRating(for movieTitle: String, success: (_ rating: String, _ review: String) -> ())
 }
 
-public class RottenTomatoesClient: MovieRatingStrategy {
-    public let ratingServiceName = "Rotten Tomatoes"
+class RottenTomatoesClient: MovieRatingStrategy {
+    let ratingServiceName = "Rotten Tomatoes"
     
-    public func fetchRating(
+    func fetchRating(
         for movieTitle: String,
         success: (_ rating: String, _ review: String) -> ()) {
         
@@ -30,10 +30,10 @@ public class RottenTomatoesClient: MovieRatingStrategy {
     }
 }
 
-public class IMDbClient: MovieRatingStrategy {
-    public let ratingServiceName = "IMDb"
+class IMDbClient: MovieRatingStrategy {
+    let ratingServiceName = "IMDb"
     
-    public func fetchRating(
+    func fetchRating(
         for movieTitle: String,
         success: (_ rating: String, _ review: String) -> ()) {
         
@@ -46,20 +46,20 @@ public class IMDbClient: MovieRatingStrategy {
     }
 }
 
-public class MoviewRatingViewController: UIViewController {
-    public var movieRatingClient: MovieRatingStrategy!
+class MoviewRatingViewController: UIViewController {
+    var movieRatingClient: MovieRatingStrategy!
     
-    @IBOutlet public var movieTitleTextField: UITextField!
-    @IBOutlet public var ratingServiceNameLabel: UILabel!
-    @IBOutlet public var ratingLabel: UILabel!
-    @IBOutlet public var reviewLabel: UILabel!
+    @IBOutlet  var movieTitleTextField: UITextField!
+    @IBOutlet  var ratingServiceNameLabel: UILabel!
+    @IBOutlet  var ratingLabel: UILabel!
+    @IBOutlet  var reviewLabel: UILabel!
     
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         ratingServiceNameLabel.text = movieRatingClient.ratingServiceName
     }
     
-    @IBAction public func searchButtonPressed(sender: Any) {
+    @IBAction  func searchButtonPressed(sender: Any) {
         guard let movieTitle = movieTitleTextField.text
         else { return }
         

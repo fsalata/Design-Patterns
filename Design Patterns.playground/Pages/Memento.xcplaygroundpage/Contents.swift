@@ -16,19 +16,19 @@
 import Foundation
 
 // MARK: - Originator
-public class Game: Codable {
-    public class State: Codable {
-        public var attemptsRemaining: Int = 3
-        public var level: Int = 1
-        public var score: Int = 0
+class Game: Codable {
+    class State: Codable {
+        var attemptsRemaining: Int = 3
+        var level: Int = 1
+        var score: Int = 0
     }
-    public var state = State()
+    var state = State()
     
-    public func rackUpMassivePoints() {
+    func rackUpMassivePoints() {
         state.score += 9002
     }
     
-    public func monstersEatPlayer() {
+    func monstersEatPlayer() {
         state.attemptsRemaining -= 1
     }
 }
@@ -37,17 +37,17 @@ public class Game: Codable {
 typealias GameMemento = Data
 
 // MARK: - CareTaker
-public class GameSystem {
+class GameSystem {
     private let decoder = JSONDecoder()
     private let encoder = JSONEncoder()
     private let userDefaults = UserDefaults.standard
     
-    public func save(_ game: Game, title: String) throws {
+    func save(_ game: Game, title: String) throws {
         let data = try encoder.encode(game)
         userDefaults.set(data, forKey: title)
     }
     
-    public func load(title: String) throws -> Game {
+    func load(title: String) throws -> Game {
         guard let data = userDefaults.data(forKey: title),
               let game = try? decoder.decode(Game.self, from: data)
         else {
@@ -57,7 +57,7 @@ public class GameSystem {
         return game
     }
     
-    public enum Error: String, Swift.Error {
+    enum Error: String, Swift.Error {
         case gameNotFound
     }
 }
