@@ -8,5 +8,6 @@
         <page name='Singleton'/>
         <page name='Strategy'/>
         <page name='Factory'/>
+        <page name='Adapter'/>
     </pages>
 </playground>
